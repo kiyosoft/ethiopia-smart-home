@@ -1,0 +1,26 @@
+language: "am"
+intents:
+  EthiopiaGetDate:
+    data:
+      - sentences:
+          - "ዛሬ ቀኑ ስንት ነው"
+          - "ዛሬ ቀኑ ስንት ነው፧"
+          - "ዛሬ ቀኑ ስንት ነው?"
+  EthiopiaTurnOffAll:
+    data:
+      - sentences:
+          - "ቤቱን ሁሉ አጥፋ"
+  EthiopiaGetGridStatus:
+    data:
+      - sentences:
+          - "መብራት አለ"
+          - "መብራት አለ፧"
+          - "መብራት አለ?"
+responses:
+  intents:
+    EthiopiaGetDate:
+      default: "ዛሬ {{ state }} ነው"
+    EthiopiaTurnOffAll:
+      default: "OK"
+    EthiopiaGetGridStatus:
+      default: "{{ status }}"

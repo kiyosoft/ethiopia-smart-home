@@ -1,0 +1,9 @@
+language: "am"
+intents:
+  HassTurnOn:
+    data:
+      - sentences:
+          - "ሳሎን መብራት አብራ"
+        slots:
+          domain: "light"
+          name: "living room"

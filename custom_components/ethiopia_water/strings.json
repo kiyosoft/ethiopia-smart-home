@@ -1,0 +1,44 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
+    },
+    "step": {
+      "user": {
+        "title": "Ethiopia Water",
+        "description": "Link tank level and pump entities. Optionally link a grid sensor (e.g. from Ethiopia Power) to block pumping during outages.",
+        "data": {
+          "tank_level_entity": "Tank level sensor (%)",
+          "pump_entity": "Pump switch",
+          "grid_entity": "Grid available entity (optional)",
+          "low_threshold": "Low level threshold",
+          "high_threshold": "Full level threshold",
+          "auto_pump": "Automatic pump control"
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "water_available": {
+        "name": "Water available"
+      }
+    },
+    "sensor": {
+      "water_tank_level": {
+        "name": "Water tank level"
+      }
+    },
+    "switch": {
+      "water_pump": {
+        "name": "Water pump"
+      }
+    }
+  },
+  "services": {
+    "run_pump_cycle": {
+      "name": "Run pump cycle",
+      "description": "Turn the pump on if the grid is available and the tank is not full."
+    }
+  }
+}

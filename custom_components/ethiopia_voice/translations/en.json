@@ -1,0 +1,17 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Service is already configured"
+    },
+    "step": {
+      "user": {
+        "title": "Ethiopia Voice",
+        "description": "Click Submit to install Amharic Assist sentences and intents. Optional fields below can stay empty. Microphone STT is set up separately with the Whisper app (Wyoming).",
+        "data": {
+          "date_entity": "Ethiopian date sensor (optional)",
+          "grid_entity": "Grid available sensor (optional)"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "info": {
+    "_postman_id": "7d2b0e6e-1234-4a3d-98f5-homeassistantws",
+    "name": "Home Assistant WebSocket API",
+    "description": "Common Home Assistant WebSocket API requests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "ha_url",
+      "value": "ws://homeassistant.local:8123/api/websocket"
+    },
+    {
+      "key": "access_token",
+      "value": "YOUR_LONG_LIVED_ACCESS_TOKEN"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Authenticate",
+      "request": {
+        "method": "GET",
+        "url": "{{ha_url}}",
+        "description": "Connect to the websocket and send this message after receiving auth_required."
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "console.log('After connecting send:');",
+              "console.log(JSON.stringify({type:'auth',access_token:pm.collectionVariables.get('access_token')}));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Get States",
+      "request": {
+        "method": "GET",
+        "url": "{{ha_url}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":1,\"type\":\"get_states\"}"
+        }
+      }
+    },
+    {
+      "name": "3. Get Config",
+      "request": {
+        "method": "GET",
+        "url": "{{ha_url}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":2,\"type\":\"get_config\"}"
+        }
+      }
+    },
+    {
+      "name": "4. Get Services",
+      "request": {
+        "method": "GET",
+        "url": "{{ha_url}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":3,\"type\":\"get_services\"}"
+        }
+      }
+    },
+    {
+      "name": "5. Subscribe Events",
+      "request": {
+        "method": "GET",
+        "url": "{{ha_url}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":4,\"type\":\"subscribe_events\"}"
+        }
+      }
+    },
+    {
+      "name": "6. Subscribe State Changes",
+      "request": {
+        "method": "GET",
+        "url": "{{ha_url}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":5,\"type\":\"subscribe_events\",\"event_type\":\"state_changed\"}"
+        }
+      }
+    },
+    {
+      "name": "7. Turn Light On",
+      "request": {
+        "method": "GET",
+        "url": "{{ha_url}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\":6,\n  \"type\":\"call_service\",\n  \"domain\":\"light\",\n  \"service\":\"turn_on\",\n  \"target\":{\n      \"entity_id\":\"light.living_room\"\n  }\n}"
+        }
+      }
+    },
+    {
+      "name": "8. Turn Light Off",
+      "request": {
+        "method": "GET",
+        "url": "{{ha_url}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\":7,\n  \"type\":\"call_service\",\n  \"domain\":\"light\",\n  \"service\":\"turn_off\",\n  \"target\":{\n      \"entity_id\":\"light.living_room\"\n  }\n}"
+        }
+      }
+    },
+    {
+      "name": "9. Toggle Switch",
+      "request": {
+        "method": "GET",
+        "url": "{{ha_url}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\":8,\n  \"type\":\"call_service\",\n  \"domain\":\"switch\",\n  \"service\":\"toggle\",\n  \"target\":{\n      \"entity_id\":\"switch.office\"\n  }\n}"
+        }
+      }
+    },
+    {
+      "name": "10. Fire Event",
+      "request": {
+        "method": "GET",
+        "url": "{{ha_url}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\":9,\n  \"type\":\"fire_event\",\n  \"event_type\":\"my_custom_event\",\n  \"event_data\":{\n      \"message\":\"Hello\"\n  }\n}"
+        }
+      }
+    },
+    {
+      "name": "11. Ping",
+      "request": {
+        "method": "GET",
+        "url": "{{ha_url}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":10,\"type\":\"ping\"}"
+        }
+      }
+    }
+  ]
+}

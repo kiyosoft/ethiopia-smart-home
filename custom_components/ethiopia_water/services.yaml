@@ -1,0 +1,3 @@
+run_pump_cycle:
+  name: Run pump cycle
+  description: Turn the pump on if the grid is available and the tank is not full.

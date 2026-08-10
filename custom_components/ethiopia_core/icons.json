@@ -1,0 +1,26 @@
+{
+  "entity": {
+    "calendar": {
+      "ethiopian_holidays": {
+        "default": "mdi:calendar-star"
+      }
+    },
+    "sensor": {
+      "ethiopian_date": {
+        "default": "mdi:calendar"
+      },
+      "ethiopian_day": {
+        "default": "mdi:calendar-today"
+      },
+      "ethiopian_month": {
+        "default": "mdi:calendar-month"
+      },
+      "ethiopian_year": {
+        "default": "mdi:calendar-range"
+      },
+      "next_holiday": {
+        "default": "mdi:calendar-star"
+      }
+    }
+  }
+}

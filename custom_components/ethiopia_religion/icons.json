@@ -1,0 +1,44 @@
+{
+  "entity": {
+    "binary_sensor": {
+      "is_fasting": {
+        "default": "mdi:food-off"
+      },
+      "is_ramadan": {
+        "default": "mdi:moon-waning-crescent"
+      }
+    },
+    "sensor": {
+      "sinkesar_today": {
+        "default": "mdi:book-open-page-variant"
+      },
+      "orthodox_fast": {
+        "default": "mdi:food-apple-outline"
+      },
+      "next_feast": {
+        "default": "mdi:church"
+      },
+      "islamic_date": {
+        "default": "mdi:calendar-month"
+      },
+      "prayer_fajr": {
+        "default": "mdi:weather-sunset-up"
+      },
+      "prayer_dhuhr": {
+        "default": "mdi:weather-sunny"
+      },
+      "prayer_asr": {
+        "default": "mdi:weather-partly-cloudy"
+      },
+      "prayer_maghrib": {
+        "default": "mdi:weather-sunset-down"
+      },
+      "prayer_isha": {
+        "default": "mdi:weather-night"
+      },
+      "next_prayer": {
+        "default": "mdi:mosque"
+      }
+    }
+  }
+}

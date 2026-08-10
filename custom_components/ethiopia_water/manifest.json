@@ -1,0 +1,14 @@
+{
+  "domain": "ethiopia_water",
+  "name": "Ethiopia Water",
+  "codeowners": [
+    "@kidussolomon"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/kidussolomon/ethiopia-smart-home",
+  "integration_type": "hub",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/kidussolomon/ethiopia-smart-home/issues",
+  "single_config_entry": true,
+  "version": "0.1.1"
+}

@@ -1,0 +1,182 @@
+{
+  "info": {
+    "_postman_id": "hass-api-collection-2026",
+    "name": "Home Assistant API",
+    "description": "A collection to interact with the Home Assistant REST and WebSocket API endpoints.",
+    "schema": "https://getpostman.com"
+  },
+  "item": [
+    {
+      "name": "System",
+      "item": [
+        {
+          "name": "Check API Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{HASS_URL}}/api/",
+              "host": ["{{HASS_URL}}"],
+              "path": ["api", ""]
+            },
+            "description": "Returns a message indicating if the API is up and running."
+          },
+          "response": []
+        },
+        {
+          "name": "Get System Config",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{HASS_URL}}/api/config",
+              "host": ["{{HASS_URL}}"],
+              "path": ["api", "config"]
+            },
+            "description": "Returns the core configuration parameters of your Home Assistant instance."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "States",
+      "item": [
+        {
+          "name": "Get All States",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{HASS_URL}}/api/states",
+              "host": ["{{HASS_URL}}"],
+              "path": ["api", "states"]
+            },
+            "description": "Fetches an array of state objects for every entity currently active."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Single Entity State",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{HASS_URL}}/api/states/light.living_room",
+              "host": ["{{HASS_URL}}"],
+              "path": ["api", "states", "light.living_room"]
+            },
+            "description": "Replace 'light.living_room' with your specific entity ID to see its state and properties."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Services",
+      "item": [
+        {
+          "name": "Call Service (Turn On Light)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"entity_id\": \"light.living_room\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{HASS_URL}}/api/services/light/turn_on",
+              "host": ["{{HASS_URL}}"],
+              "path": ["api", "services", "light", "turn_on"]
+            },
+            "description": "Triggers a domain service. Change domain (light) and service (turn_on) as needed."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Dashboards (Templates Workaround)",
+      "item": [
+        {
+          "name": "List Dashboards via Template",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"template\": \"{{ dashboards() }}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{HASS_URL}}/api/template",
+              "host": ["{{HASS_URL}}"],
+              "path": ["api", "template"]
+            },
+            "description": "Renders a Jinja template to list custom Lovelace dashboards without using WebSockets."
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{Bearer_Token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "HASS_URL",
+      "value": "http://homeassistant.local:8123",
+      "type": "string"
+    },
+    {
+      "key": "Bearer_Token",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhNjU5Y2ZjMmQ4MTM0NGE0YTU4NmNiZTA4MTkyNTYyMyIsImlhdCI6MTc4NTg1NDExNCwiZXhwIjoyMTAxMjE0MTE0fQ.rIeue0lgqM7qNBB7ZydW_Yl1Ahe0u-iPv435btRfUUo",
+      "type": "string"
+    }
+  ]
+}

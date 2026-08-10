@@ -1,0 +1,102 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Service is already configured"
+    },
+    "step": {
+      "user": {
+        "title": "Ethiopia Religion",
+        "description": "Configure Orthodox Sinksar/fasting and Islamic prayer times.",
+        "data": {
+          "language": "Display language",
+          "location": "Location",
+          "orthodox": "Ethiopian Orthodox features",
+          "islamic": "Islamic calendar and prayer times"
+        },
+        "data_description": {
+          "language": "Language for fast and feast names.",
+          "location": "Used to calculate Islamic prayer times. Defaults to your Home Assistant location.",
+          "orthodox": "Enable Sinksar, fasting, and feast sensors.",
+          "islamic": "Enable Hijri date and prayer time sensors."
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Prayer calculation",
+        "data": {
+          "calculation_method": "Calculation method"
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "is_fasting": {
+        "name": "Orthodox fasting"
+      },
+      "is_ramadan": {
+        "name": "Ramadan"
+      }
+    },
+    "sensor": {
+      "sinkesar_today": {
+        "name": "Sinksar today"
+      },
+      "orthodox_fast": {
+        "name": "Orthodox fast"
+      },
+      "next_feast": {
+        "name": "Next feast"
+      },
+      "islamic_date": {
+        "name": "Islamic date"
+      },
+      "prayer_fajr": {
+        "name": "Fajr"
+      },
+      "prayer_dhuhr": {
+        "name": "Dhuhr"
+      },
+      "prayer_asr": {
+        "name": "Asr"
+      },
+      "prayer_maghrib": {
+        "name": "Maghrib"
+      },
+      "prayer_isha": {
+        "name": "Isha"
+      },
+      "next_prayer": {
+        "name": "Next prayer"
+      }
+    }
+  },
+  "selector": {
+    "language": {
+      "options": {
+        "am": "Amharic",
+        "en": "English"
+      }
+    },
+    "calculation_method": {
+      "options": {
+        "jafari": "Jafari / Shia Ithna-Ashari",
+        "karachi": "Karachi",
+        "isna": "ISNA",
+        "mwl": "Muslim World League",
+        "makkah": "Umm al-Qura (Makkah)",
+        "egypt": "Egyptian General Authority",
+        "tehran": "Tehran",
+        "gulf": "Gulf",
+        "kuwait": "Kuwait",
+        "qatar": "Qatar",
+        "singapore": "Singapore",
+        "turkey": "Turkey",
+        "dubai": "Dubai"
+      }
+    }
+  }
+}

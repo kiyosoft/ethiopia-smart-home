@@ -1,0 +1,50 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Device is already configured"
+    },
+    "step": {
+      "user": {
+        "title": "Ethiopia Power",
+        "description": "Link grid, battery, and solar entities. Leave blank to create the facade sensors and wire devices later.",
+        "data": {
+          "grid_entity": "Grid available entity",
+          "battery_entity": "Battery level sensor",
+          "solar_entity": "Solar producing entity",
+          "backup_mode": "Primary backup"
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "grid_available": {
+        "name": "Grid available"
+      }
+    },
+    "sensor": {
+      "grid_status": {
+        "name": "Grid status"
+      },
+      "power_outage_duration": {
+        "name": "Power outage duration"
+      },
+      "next_power_estimate": {
+        "name": "Next power estimate"
+      },
+      "battery_level": {
+        "name": "Battery"
+      }
+    }
+  },
+  "selector": {
+    "backup_mode": {
+      "options": {
+        "none": "None",
+        "solar": "Solar / inverter",
+        "generator": "Generator",
+        "ups": "UPS"
+      }
+    }
+  }
+}

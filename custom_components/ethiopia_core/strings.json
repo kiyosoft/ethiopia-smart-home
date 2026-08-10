@@ -1,0 +1,51 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "[%key:common::config_flow::abort::already_configured_service%]"
+    },
+    "step": {
+      "user": {
+        "title": "Ethiopia Core",
+        "description": "Configure Ethiopian calendar localization.",
+        "data": {
+          "language": "Display language"
+        },
+        "data_description": {
+          "language": "Language used for Ethiopian month names, weekdays, seasons, and holiday names."
+        }
+      }
+    }
+  },
+  "entity": {
+    "calendar": {
+      "ethiopian_holidays": {
+        "name": "Ethiopian holidays"
+      }
+    },
+    "sensor": {
+      "ethiopian_date": {
+        "name": "Ethiopian date"
+      },
+      "ethiopian_day": {
+        "name": "Ethiopian day"
+      },
+      "ethiopian_month": {
+        "name": "Ethiopian month"
+      },
+      "ethiopian_year": {
+        "name": "Ethiopian year"
+      },
+      "next_holiday": {
+        "name": "Next holiday"
+      }
+    }
+  },
+  "selector": {
+    "language": {
+      "options": {
+        "am": "Amharic",
+        "en": "English"
+      }
+    }
+  }
+}

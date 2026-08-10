@@ -1,0 +1,17 @@
+{
+  "domain": "ethiopia_voice",
+  "name": "Ethiopia Voice",
+  "codeowners": [
+    "@kidussolomon"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "conversation"
+  ],
+  "documentation": "https://github.com/kidussolomon/ethiopia-smart-home",
+  "integration_type": "service",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/kidussolomon/ethiopia-smart-home/issues",
+  "single_config_entry": true,
+  "version": "0.1.2"
+}

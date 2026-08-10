@@ -1,0 +1,51 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "አስቀድሞ ተአቅሞራል"
+    },
+    "step": {
+      "user": {
+        "title": "Ethiopia Core",
+        "description": "ኢትዮጵያ ዘመን ማስተካከል",
+        "data": {
+          "language": "ቋንቋ"
+        },
+        "data_description": {
+          "language": "ቋንቋ"
+        }
+      }
+    }
+  },
+  "entity": {
+    "calendar": {
+      "ethiopian_holidays": {
+        "name": "ኢትዮጵያ በዓላት"
+      }
+    },
+    "sensor": {
+      "ethiopian_date": {
+        "name": "ኢትዮጵያ ቀን"
+      },
+      "ethiopian_day": {
+        "name": "ኢትዮጵያ ቀን"
+      },
+      "ethiopian_month": {
+        "name": "ኢትዮጵያ ወር"
+      },
+      "ethiopian_year": {
+        "name": "ኢትዮጵያ ዓመት"
+      },
+      "next_holiday": {
+        "name": "ቀጣይ በዓል"
+      }
+    }
+  },
+  "selector": {
+    "language": {
+      "options": {
+        "am": "አማርኛ",
+        "en": "English"
+      }
+    }
+  }
+}
