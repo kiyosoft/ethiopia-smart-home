@@ -6,12 +6,30 @@
     "step": {
       "user": {
         "title": "Ethiopia Power",
-        "description": "Link grid, battery, and solar entities. Leave blank to create the facade sensors and wire devices later.",
+        "description": "Link grid, battery, and solar entities. Optionally configure a weekly load-shedding schedule for restore estimates.",
         "data": {
           "grid_entity": "Grid available entity",
           "battery_entity": "Battery level sensor",
           "solar_entity": "Solar producing entity",
-          "backup_mode": "Primary backup"
+          "backup_mode": "Primary backup",
+          "schedule_enabled": "Enable load-shedding schedule",
+          "schedule_days": "Scheduled outage days",
+          "schedule_start": "Outage start time",
+          "schedule_end": "Outage end time"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Load-shedding schedule",
+        "description": "When an outage falls inside a scheduled window, Next power estimate shows the window end time.",
+        "data": {
+          "schedule_enabled": "Enable load-shedding schedule",
+          "schedule_days": "Scheduled outage days",
+          "schedule_start": "Outage start time",
+          "schedule_end": "Outage end time"
         }
       }
     }
@@ -34,6 +52,15 @@
       },
       "battery_level": {
         "name": "Battery"
+      },
+      "outage_count_30d": {
+        "name": "Outages (30 days)"
+      },
+      "outage_total_30d": {
+        "name": "Outage total (30 days)"
+      },
+      "outage_longest_30d": {
+        "name": "Longest outage (30 days)"
       }
     }
   },
@@ -44,6 +71,17 @@
         "solar": "Solar / inverter",
         "generator": "Generator",
         "ups": "UPS"
+      }
+    },
+    "schedule_days": {
+      "options": {
+        "mon": "Monday",
+        "tue": "Tuesday",
+        "wed": "Wednesday",
+        "thu": "Thursday",
+        "fri": "Friday",
+        "sat": "Saturday",
+        "sun": "Sunday"
       }
     }
   }

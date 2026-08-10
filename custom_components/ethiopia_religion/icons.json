@@ -8,6 +8,11 @@
         "default": "mdi:moon-waning-crescent"
       }
     },
+    "calendar": {
+      "orthodox_feasts_fasts": {
+        "default": "mdi:calendar-month"
+      }
+    },
     "sensor": {
       "sinkesar_today": {
         "default": "mdi:book-open-page-variant"

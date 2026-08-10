@@ -1,4 +1,4 @@
-"""Tests for Ethiopia Core coordinator midnight refresh scheduling."""
+"""Tests for Ethiopia Core coordinator refresh scheduling."""
 
 from __future__ import annotations
 
@@ -17,15 +17,18 @@ from ethiopia_core.coordinator import EthiopiaCoreCoordinator  # noqa: E402
 
 
 @pytest.mark.asyncio
-async def test_midnight_listener_armed_once_and_requests_refresh() -> None:
-    """Midnight is tracked once at init and triggers a refresh."""
+async def test_midnight_and_minute_listeners_armed_and_request_refresh() -> None:
+    """Midnight and minute trackers are armed and both trigger a refresh."""
     handlers: list[Callable[..., Any]] = []
-    unsub = MagicMock(name="midnight_unsub")
+    track_kwargs: list[dict[str, Any]] = []
+    midnight_unsub = MagicMock(name="midnight_unsub")
+    minute_unsub = MagicMock(name="minute_unsub")
+    unsubs = iter([midnight_unsub, minute_unsub])
 
     def _track(hass: Any, action: Callable[..., Any], **kwargs: Any) -> MagicMock:
-        assert kwargs == {"hour": 0, "minute": 0, "second": 0}
+        track_kwargs.append(kwargs)
         handlers.append(action)
-        return unsub
+        return next(unsubs)
 
     track = MagicMock(side_effect=_track)
     hass = MagicMock()
@@ -37,14 +40,20 @@ async def test_midnight_listener_armed_once_and_requests_refresh() -> None:
         coordinator = EthiopiaCoreCoordinator(hass, entry, "am")  # type: ignore[arg-type]
         coordinator.async_request_refresh = MagicMock(return_value=refresh_result)  # type: ignore[method-assign]
 
-    track.assert_called_once()
-    assert len(handlers) == 1
-    assert coordinator._midnight_unsub is unsub
+    assert track.call_count == 2
+    assert track_kwargs == [
+        {"hour": 0, "minute": 0, "second": 0},
+        {"second": 0},
+    ]
+    assert len(handlers) == 2
+    assert coordinator._midnight_unsub is midnight_unsub
+    assert coordinator._minute_unsub is minute_unsub
     assert coordinator._unsub_refresh is None
 
     handlers[0](datetime(2026, 8, 11, 0, 0, 0))
-    coordinator.async_request_refresh.assert_called_once_with()
-    hass.async_create_task.assert_called_once_with(refresh_result)
+    handlers[1](datetime(2026, 8, 11, 7, 30, 0))
+    assert coordinator.async_request_refresh.call_count == 2
+    assert hass.async_create_task.call_count == 2
 
     with patch(
         "ethiopia_core.coordinator.DataUpdateCoordinator.async_shutdown",
@@ -52,6 +61,8 @@ async def test_midnight_listener_armed_once_and_requests_refresh() -> None:
     ) as super_shutdown:
         await coordinator.async_shutdown()
 
-    unsub.assert_called_once_with()
+    midnight_unsub.assert_called_once_with()
+    minute_unsub.assert_called_once_with()
     assert coordinator._midnight_unsub is None
+    assert coordinator._minute_unsub is None
     super_shutdown.assert_awaited_once()

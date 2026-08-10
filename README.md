@@ -43,9 +43,9 @@ Settings → Devices & services → Add Integration → pick only what you insta
 
 ## Entities (summary)
 
-- **core:** `sensor.ethiopian_date`, day/month/year, `next_holiday`, `calendar.ethiopian_holidays`
-- **religion:** Sinksar, fast, feast, Hijri, prayer times
-- **power:** `binary_sensor.grid_available`, outage / battery sensors
+- **core:** `sensor.ethiopian_date`, day/month/year, `sensor.ethiopian_time`, `next_holiday`, `calendar.ethiopian_holidays`
+- **religion:** Sinksar, fast, feast, `calendar.orthodox_feasts_fasts`, Hijri, prayer times
+- **power:** `binary_sensor.grid_available`, outage / battery sensors, load-shedding schedule restore estimate, 30-day outage stats
 - **water:** tank level, pump switch, `ethiopia_water.run_pump_cycle`
 - **voice:** Amharic Assist sentences (`ሳሎን መብራት አብራ`, `ቤቱን ሁሉ አጥፋ`, `ዛሬ ቀኑ ስንት ነው፧`, `መብራት አለ፧`) — STT is separate (Wyoming)
 

@@ -21,6 +21,8 @@ async def async_get_config_entry_diagnostics(
             "language": data.language,
             "gregorian": data.gregorian.isoformat(),
             "ethiopian": asdict(data.ethiopian),
+            "ethiopian_time": asdict(data.ethiopian_time),
+            "western_time": data.western_time,
             "next_holiday": (
                 {
                     "name_en": data.next_holiday.name_en,

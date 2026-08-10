@@ -41,6 +41,11 @@
         "name": "Ramadan"
       }
     },
+    "calendar": {
+      "orthodox_feasts_fasts": {
+        "name": "የኦርቶዶክስ በዓላትና ጾሞች"
+      }
+    },
     "sensor": {
       "sinkesar_today": {
         "name": "የዘሬ ስንክሳር"

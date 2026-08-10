@@ -34,7 +34,12 @@ from .islamic import (
     is_ramadan,
     next_prayer_name,
 )
-from .orthodox import OrthodoxFeast, next_feast, orthodox_fast_label
+from .orthodox import (
+    OrthodoxFast,
+    OrthodoxFeast,
+    active_orthodox_fast,
+    next_feast,
+)
 from .sinkesar import SinksarDay, load_sinksar_day
 
 if TYPE_CHECKING:
@@ -56,6 +61,7 @@ class EthiopiaReligionData:
     islamic_enabled: bool
     sinksar: SinksarDay | None
     orthodox_fast: str | None
+    orthodox_fast_info: OrthodoxFast | None
     next_feast: OrthodoxFeast | None
     islamic_date: str | None
     hijri_year: int | None
@@ -109,7 +115,8 @@ class EthiopiaReligionCoordinator(DataUpdateCoordinator[EthiopiaReligionData]):
         islamic = self._islamic_enabled()
 
         sinksar = load_sinksar_day(eth) if orthodox else None
-        fast = orthodox_fast_label(today, eth, language) if orthodox else None
+        fast_info = active_orthodox_fast(today, eth) if orthodox else None
+        fast = fast_info.name(language) if fast_info else None
         feast = next_feast(today) if orthodox else None
 
         islamic_date = None
@@ -146,6 +153,7 @@ class EthiopiaReligionCoordinator(DataUpdateCoordinator[EthiopiaReligionData]):
             islamic_enabled=islamic,
             sinksar=sinksar,
             orthodox_fast=fast,
+            orthodox_fast_info=fast_info,
             next_feast=feast,
             islamic_date=islamic_date,
             hijri_year=hy,

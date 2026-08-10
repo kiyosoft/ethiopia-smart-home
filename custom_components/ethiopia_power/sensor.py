@@ -43,6 +43,7 @@ SENSORS: tuple[EthiopiaPowerSensorDescription, ...] = (
             "outage_started": (
                 d.outage_started.isoformat() if d.outage_started else None
             ),
+            "in_scheduled_outage": d.in_scheduled_outage,
         },
     ),
     EthiopiaPowerSensorDescription(
@@ -57,6 +58,7 @@ SENSORS: tuple[EthiopiaPowerSensorDescription, ...] = (
         key="next_power_estimate",
         translation_key="next_power_estimate",
         value_fn=lambda d: d.next_power_estimate,
+        attr_fn=lambda d: {"in_scheduled_outage": d.in_scheduled_outage},
     ),
     EthiopiaPowerSensorDescription(
         key="battery_level",
@@ -65,6 +67,28 @@ SENSORS: tuple[EthiopiaPowerSensorDescription, ...] = (
         device_class=SensorDeviceClass.BATTERY,
         state_class=SensorStateClass.MEASUREMENT,
         value_fn=lambda d: d.battery_level,
+    ),
+    EthiopiaPowerSensorDescription(
+        key="outage_count_30d",
+        translation_key="outage_count_30d",
+        state_class=SensorStateClass.TOTAL,
+        value_fn=lambda d: d.outage_count_30d,
+    ),
+    EthiopiaPowerSensorDescription(
+        key="outage_total_30d",
+        translation_key="outage_total_30d",
+        native_unit_of_measurement=UnitOfTime.SECONDS,
+        device_class=SensorDeviceClass.DURATION,
+        state_class=SensorStateClass.TOTAL,
+        value_fn=lambda d: d.outage_total_30d,
+    ),
+    EthiopiaPowerSensorDescription(
+        key="outage_longest_30d",
+        translation_key="outage_longest_30d",
+        native_unit_of_measurement=UnitOfTime.SECONDS,
+        device_class=SensorDeviceClass.DURATION,
+        state_class=SensorStateClass.MEASUREMENT,
+        value_fn=lambda d: d.outage_longest_30d,
     ),
 )
 
@@ -109,7 +133,7 @@ class EthiopiaPowerSensor(EthiopiaPowerEntity, SensorEntity):
 
     @property
     def available(self) -> bool:
-        """Battery sensor unavailable until a source is linked."""
+        """Battery / estimate unavailable until source or schedule applies."""
         if self.entity_description.key == "battery_level":
             return self.coordinator.data.battery_level is not None
         if self.entity_description.key == "next_power_estimate":

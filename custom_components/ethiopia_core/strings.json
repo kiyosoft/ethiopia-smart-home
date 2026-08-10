@@ -35,6 +35,9 @@
       "ethiopian_year": {
         "name": "Ethiopian year"
       },
+      "ethiopian_time": {
+        "name": "Ethiopian time"
+      },
       "next_holiday": {
         "name": "Next holiday"
       }

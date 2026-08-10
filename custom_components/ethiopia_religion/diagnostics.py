@@ -35,6 +35,9 @@ async def async_get_config_entry_diagnostics(
                 data.sinksar.primary_title if data.sinksar else None
             ),
             "orthodox_fast": data.orthodox_fast,
+            "orthodox_fast_key": (
+                data.orthodox_fast_info.key if data.orthodox_fast_info else None
+            ),
             "next_feast": (
                 data.next_feast.name_en if data.next_feast else None
             ),

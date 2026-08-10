@@ -18,6 +18,9 @@
       "ethiopian_year": {
         "default": "mdi:calendar-range"
       },
+      "ethiopian_time": {
+        "default": "mdi:clock-outline"
+      },
       "next_holiday": {
         "default": "mdi:calendar-star"
       }

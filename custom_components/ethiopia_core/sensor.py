@@ -62,6 +62,19 @@ SENSOR_TYPES: tuple[EthiopiaCoreSensorDescription, ...] = (
         value_fn=lambda data: data.ethiopian.year,
     ),
     EthiopiaCoreSensorDescription(
+        key="ethiopian_time",
+        translation_key="ethiopian_time",
+        object_id="ethiopian_time",
+        value_fn=lambda data: data.ethiopian_time.format(data.language),
+        attr_fn=lambda data: {
+            "hour": data.ethiopian_time.hour,
+            "minute": data.ethiopian_time.minute,
+            "period": data.ethiopian_time.period,
+            "period_name": data.ethiopian_time.period_name(data.language),
+            "western_time": data.western_time,
+        },
+    ),
+    EthiopiaCoreSensorDescription(
         key="next_holiday",
         translation_key="next_holiday",
         object_id="next_holiday",

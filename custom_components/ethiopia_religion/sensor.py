@@ -67,6 +67,18 @@ SENSOR_TYPES: tuple[EthiopiaReligionSensorDescription, ...] = (
         object_id="orthodox_fast",
         requires_orthodox=True,
         value_fn=lambda data: data.orthodox_fast,
+        attr_fn=lambda data: (
+            {
+                "key": data.orthodox_fast_info.key,
+                "start": data.orthodox_fast_info.start.isoformat(),
+                "end": data.orthodox_fast_info.end.isoformat(),
+                "days_remaining": data.orthodox_fast_info.days_remaining(
+                    data.gregorian
+                ),
+            }
+            if data.orthodox_fast_info
+            else {}
+        ),
     ),
     EthiopiaReligionSensorDescription(
         key="next_feast",

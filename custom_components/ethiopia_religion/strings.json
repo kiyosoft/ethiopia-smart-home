@@ -41,6 +41,11 @@
         "name": "Ramadan"
       }
     },
+    "calendar": {
+      "orthodox_feasts_fasts": {
+        "name": "Orthodox feasts and fasts"
+      }
+    },
     "sensor": {
       "sinkesar_today": {
         "name": "Sinksar today"
